@@ -7,7 +7,10 @@ cap = cv2.VideoCapture(0)
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
 body_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fullbody.xml")
 
-recording = True
+dectection = True
+dectection_stopped_time = None
+timer_started = False
+SECOND_TO_RECORD_AFTER_DETECTION = 5
 
 # record the video
 frame_size = (int(cap.get(3)), int (cap.get(4)))
@@ -22,7 +25,7 @@ while True:
     bodies = face_cascade.detectMultiScale(gray, 1.3, 5)
     
     if len(faces) + len(bodies) > 0:
-        recording = True
+        dectection = True
         
     out.write(frame)
     
