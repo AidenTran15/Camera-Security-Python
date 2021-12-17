@@ -25,7 +25,12 @@ while True:
     bodies = face_cascade.detectMultiScale(gray, 1.3, 5)
     
     if len(faces) + len(bodies) > 0:
-        dectection = True
+        if detection:
+            timer_started = Fasler
+        else:
+            dectection = True
+            current_time = datetime.datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
+            out = cv2.VideoWriter(f"{current_time}.mp4", fourcc, 20, frame_size)
         
     out.write(frame)
     
